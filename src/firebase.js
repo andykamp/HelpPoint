@@ -1,11 +1,11 @@
 import * as firebase from 'firebase';
-const config = {
-  apiKey: 'AIzaSyAySL_xKeFMEzkSahvW84e4m0Y9ASk8QVg',
-  authDomain: 'queuemeapp-10df5.firebaseapp.com',
-  databaseURL: 'https://queuemeapp-10df5.firebaseio.com',
-  projectId: 'queuemeapp-10df5',
-  storageBucket: 'queuemeapp-10df5.appspot.com',
-  messagingSenderId: '278836475143'
-};
+var config = {
+    apiKey: 'AIzaSyBYcVX_V6nrjmFlh5AegVDUJB1u_vRhoIQ',
+    authDomain: 'helppoint-b9bf4.firebaseapp.com',
+    databaseURL: 'https://helppoint-b9bf4.firebaseio.com',
+    projectId: 'helppoint-b9bf4',
+    storageBucket: 'helppoint-b9bf4.appspot.com',
+    messagingSenderId: '900118342126'
+  };
 
 export const firebaseApp = firebase.initializeApp(config);
