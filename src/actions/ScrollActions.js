@@ -7,6 +7,7 @@ export const subscribeToScroll = () => {
   return (dispatch) => {
         ref.on('value', snapshot => {
           dispatch({ type: SCROLL, payload: snapshot.val() });
+          window.scrollTo(0,snapshot.val());
           console.log('SCROLLSubscribe', snapshot.val());
       });
   };
