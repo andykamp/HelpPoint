@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import firebase from 'firebase';
 import { connect } from 'react-redux'; //to get acces to the actioncreater
-import { writeScrollToDatabase, subscribeToScroll } from './actions'; //all the actions in the actioncreator
+import { writeScrollToDatabase, subscribeToScroll, activateScroll } from './actions'; //all the actions in the actioncreator
 import './App.css';
 
 class App extends Component {
@@ -18,17 +18,23 @@ class App extends Component {
 }
 
 handleScroll(event) {
-  let  intElemScrollTop = window.scrollY;
+  let  intElemScrollTop = Math.round(window.scrollY);
         //console.log('scrollTop', window.scrollY);
       const yscroll= intElemScrollTop;
       //writes pixels to database
-      this.props.writeScrollToDatabase({ yscroll });
+      if (this.props.passiveScroll === false ){
+        this.props.writeScrollToDatabase({ yscroll });
+      }
+
       //window.scrollTo(0,500);
+      this.props.activateScroll();
+
 
 }
 
 
   render() {
+    console.log('passivescroll', this.props.passiveScroll);
     return (
       <div className="App">
         <div className="App-header">
@@ -49,9 +55,9 @@ handleScroll(event) {
   }
 }
 const mapStateToProps = (state) => {
-  const { scroll } = state.scroll;
+  const { scroll, passiveScroll } = state.scroll;
 
   //createQueue is from the reducer/index and is the reucer!
-  return { scroll };
+  return { scroll, passiveScroll };
 };
-export default connect(mapStateToProps, { writeScrollToDatabase, subscribeToScroll })(App);
+export default connect(mapStateToProps, { writeScrollToDatabase, subscribeToScroll, activateScroll })(App);
