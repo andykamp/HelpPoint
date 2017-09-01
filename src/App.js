@@ -4,9 +4,19 @@ import firebase from 'firebase';
 import { connect } from 'react-redux'; //to get acces to the actioncreater
 import { writeScrollToDatabase, subscribeToScroll, activateScroll } from './actions'; //all the actions in the actioncreator
 import './App.css';
+import './ScriptDraw.html';
 
 class App extends Component {
 //BACKEND//
+
+componentWillMount() {
+       /*const script = document.createElement("script");
+
+       script.src = "https://togetherjs.com/togetherjs-min.js";
+       script.async = true;
+
+       document.body.appendChild(script);*/
+   }
 
   componentDidMount() {
       window.addEventListener('scroll', this.handleScroll.bind(this));
