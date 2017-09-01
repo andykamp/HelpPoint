@@ -1,0 +1,29 @@
+react native command lines:
+react-native run-ios //kjør IOS simulator
+react-native init #navn //lager prosjekt
+cmd-shift-p i atom: alle shortcuts
+
+npm install --save-dev eslint-config-rallycoding //installer eslint inne i #navn, slik at man får den “packages” med feilmeldinger etc
+må også lage en fil: ‘.eslintrc’ med {
+  "extends": "rallycoding"
+}
+
+shift+cmd+h = home på IOS simulator
+npm install --save redux react-redux  //installer redux
+//android til å kjøre: local.properties
+
+npm install --save firebase //installer firebase
+
+npm install --save react-native-router-flux //navigering rundt
+
+nom install —save lodash //hjelp til å gjøre objekt til array
+
+() kaller funksjonen med en gang. Uten (), så skal den bare kalles en gang, har ikke så mye å si når
+
+redux-thunk; Async Action Creators, det vil si f.eks. dataene fra firebase ikke kommer tilbake umiddelbart
+
+mkdir - ny mappe
+
+npm install / npm start
+
+cmd+shift+p: gitplus
