@@ -10,6 +10,7 @@ import reducer from './reducers';
 
 import './index.css';
 import App from './App';
+import Home from './components/Home';
 import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(reducer, {}, applyMiddleware(ReduxThunk));
@@ -19,6 +20,8 @@ const store = createStore(reducer, {}, applyMiddleware(ReduxThunk));
 ReactDOM.render(
   <Provider store={store}>
   <Router path="/" history={browserHistory}>
-    <Route path="/" component={App} />
+    <Route path="/Backend" component={App} />
+    <Route path="/" component={Home} />
+
   </Router>
 </Provider>, document.getElementById('root'));

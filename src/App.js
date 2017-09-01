@@ -6,7 +6,7 @@ import { writeScrollToDatabase, subscribeToScroll, activateScroll } from './acti
 import './App.css';
 
 class App extends Component {
-
+//BACKEND//
 
   componentDidMount() {
       window.addEventListener('scroll', this.handleScroll.bind(this));
@@ -36,24 +36,36 @@ handleScroll(event) {
   render() {
     console.log('passivescroll', this.props.passiveScroll);
     return (
+      <div>
       <div className="App">
+
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <div className="header-image">
+            BACKEND
+          </div>
+
+
+          <div className="header-buttons">
+            Buttons
+          </div>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <button onclick="TogetherJS(this); return false;">Start TogetherJS</button>
-        <div style={{ height: 1000, alignItems: 'center', flexDirection: 'center'}}>
+
+        <div className="App-main">
           <text>
              {this.props.scroll}
           </text>
         </div>
+
+
       </div>
+      <div className="under-Div">
+        <h1>About us</h1>
+      </div>
+    </div>
     );
   }
 }
+
 const mapStateToProps = (state) => {
   const { scroll, passiveScroll } = state.scroll;
 
