@@ -41,7 +41,7 @@ handleScroll(event) {
 
         <div className="App-header">
           <div className="header-image">
-            BACKEND
+            Backend
           </div>
 
 
@@ -64,7 +64,9 @@ handleScroll(event) {
     </div>
     );
   }
-}
+  }
+
+
 
 const mapStateToProps = (state) => {
   const { scroll, passiveScroll } = state.scroll;
