@@ -6,7 +6,6 @@ import { writeScrollToDatabase, subscribeToScroll, activateScroll } from './acti
 import './App.css';
 
 class App extends Component {
-//BACKEND//
 
   componentDidMount() {
       window.addEventListener('scroll', this.handleScroll.bind(this));
