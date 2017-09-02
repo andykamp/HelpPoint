@@ -5,6 +5,7 @@ import { } from '../actions';
 import { browserHistory } from 'react-router';
 
 
+
 import '../App.css';
 
 
@@ -20,12 +21,60 @@ class Home extends Component {
 
   }
 
+  onNavPress() {
+    browserHistory.push('/nav');
+  }
+
 
 
   render() {
-
+//everything must be inside a div
     return (
       <div>
+        <div>
+          <img src={require('./images/header.png')} alt="logo" className="Header_img" />
+          <div style={{ height: '20px' }} />
+          <div className="Home_body">
+            <div className="Home_body">
+              <div>
+                <h1 className="Helppoint_text">What is helppoint?</h1>
+                <p className="Helppoint_text">We are something pretty cool and stuff and different stuff and stuff cool
+                  We are something pretty cool and stuff and different stuff and stuff cool
+                </p>
+              </div>
+            </div>
+            <div className="Home_body">
+              <img src={require('./images/computers.jpg')} alt="computer" className="ComputerImg" />
+            </div>
+          </div>
+        </div>
+
+        <div style={{ height: '30px' }} />
+
+        <div>
+            <div className="Home_body">
+              <div>
+                <h1 className="Helppoint_text">Who uses helppoint?</h1>
+              </div>
+            </div>
+            <div style={{ height: '10px' }} />
+            <div className="Home_body">
+              <div className="Padding">
+                <img src={require('./images/dnb.png')} alt="DNB" className="dnb" />
+              </div>
+              <div className="Padding">
+                <img src={require('./images/bronnoysund.jpg')} alt="Brønnøysundregistrene" className="bronnoysund" />
+              </div>
+              <div className="Padding">
+                <img src={require('./images/nav.png')} alt="nav" className="nav" onClick={this.onNavPress} />
+              </div>
+
+            </div>
+        </div>
+
+
+      </div>
+      /*<div>
       <div className="App">
 
         <div className="App-header">
@@ -79,6 +128,8 @@ class Home extends Component {
       </div>
     </div>
     );
+    */
+  );
   }
 }
 

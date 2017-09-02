@@ -1,5 +1,86 @@
-.App {
+
+
+  .Padding {
+    padding-top: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 40px;
+  }
+
+  .dnb {
+
+    width: 117px;
+    height: 60px;
+
+  }
+
+  .nav {
+    cursor: pointer;
+    width: 122px;
+    height: 77px;
+  }
+
+  .navbody {
+    display: flex; 
+    background-color: black;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .navpage_logo {
+    align-items: center;
+    justify-content: center;
+    width: 122px;
+    height: 77px;
+  }
+
+  .bronnoysund {
+
+    width: 180px;
+    height: 22px;
+  }
+
+  .ComputerImg {
+    width: 300px;
+    height: 195px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .Header_img {
+    height: auto;
+    width: 100%;
+  }
+
+  .Helppoint_text {
+    text-align: center;
+    font-family: 'Varela Round', sans-serif;
+  }
+
+
+
+  .Home_body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    flex: 1;
+    padding-left: 30px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+  }
+
+.Bottom {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: large;
   text-align: center;
+  color: black;
+  background-color: white;
 }
 
 .App-logo {
@@ -21,11 +102,9 @@
 .App {
   text-align: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: stretch;
-  height: 100vh;
-
-
+  padding: 20px;
 }
 .header-image{
   height: 40px;
@@ -53,6 +132,7 @@
 
 
 }
+
 .header-image{
   display: flex;
   flex: 5;
