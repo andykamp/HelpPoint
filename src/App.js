@@ -19,7 +19,7 @@ class App extends Component {
       window.addEventListener('scroll', this.handleScroll.bind(this));
       this.props.subscribeToScroll();
       // finds the button and adds the onclick attribute with the non react javascript
-      //ReactDOM.findDOMNode(this.refs.together).setAttribute('onclick', 'TogetherJS(this); return false;');
+      ReactDOM.findDOMNode(this.refs.together).setAttribute('onclick', 'TogetherJS(this); return false;');
       // starts draw script
       const script = document.createElement("script");
       script.src = require('./togetherjs/draw.html')
@@ -58,10 +58,15 @@ handleScroll(event) {
             Backend
           </div>
 
+
           <div className="header-buttons">
             Buttons
           </div>
         </div>
+
+        <button className="btn-info" ref="together">
+          Start Together
+        </button>
 
         <div className="draw">
           <div className="btn-group btn-group-justified" style={{marginRight: 5, marginLeft: 5, marginTop: 10, width: '100%'}}>
