@@ -234,3 +234,53 @@ $('.minus-size').click(function() {
   changeMouse();
 });
 });
+
+//////////////////scroll
+
+var send = true;
+
+window.addEventListener('scroll', function () {
+
+  if (send === true) {
+  if (TogetherJS.running) {
+    let  intElemScrollTop = Math.round(window.scrollY);
+          //console.log('scrollTop', window.scrollY);
+        const yscroll= intElemScrollTop;
+
+    TogetherJS.send({
+      type: 'scroll',
+      y: yscroll,
+      passive: true
+    });
+  }
+}
+});
+
+
+// Listens for scroll messages, sends info about the scroll:
+TogetherJS.hub.on('scroll', function (msg) {
+  if (!msg.sameUrl) {
+      return;
+  }
+  console.log('SENDBEFORE', send);
+
+  send=false;//tels scollhandler to not send my scrollings since i am tolb by other user to scrol
+  console.log('SENDAFTER', send);
+
+      window.scrollTo(0, msg.y);
+//send=true; //enables scrolling becous i must be able to scroll
+  setTimeout(function(){ send=true }, 30);
+
+
+
+
+});
+
+function setSend() {
+  return send=true;
+}
+
+function handleScroll(event) {
+
+
+}

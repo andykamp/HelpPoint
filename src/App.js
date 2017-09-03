@@ -4,31 +4,30 @@ import firebase from 'firebase';
 import { connect } from 'react-redux'; //to get acces to the actioncreater
 import { writeScrollToDatabase, subscribeToScroll, activateScroll } from './actions'; //all the actions in the actioncreator
 import './App.css';
-import './ScriptDraw.html';
+//import './ScriptDraw.html';
 
 class App extends Component {
 //BACKEND//
 
-componentWillMount() {
-       /*const script = document.createElement("script");
-
-       script.src = "https://togetherjs.com/togetherjs-min.js";
-       script.async = true;
-
-       document.body.appendChild(script);*/
-   }
 
   componentDidMount() {
-      window.addEventListener('scroll', this.handleScroll.bind(this));
-      this.props.subscribeToScroll();
+      //window.addEventListener('scroll', this.handleScroll.bind(this));
+      //this.props.subscribeToScroll();
+
+      const script = document.createElement("script");
+
+      script.src = require('./ScriptDraw.html')
+      script.async = true;
+
+      document.body.appendChild(script);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    //window.removeEventListener('scroll', this.handleScroll);
 }
 
 handleScroll(event) {
-  let  intElemScrollTop = Math.round(window.scrollY);
+  /*let  intElemScrollTop = Math.round(window.scrollY);
         //console.log('scrollTop', window.scrollY);
       const yscroll= intElemScrollTop;
       //writes pixels to database
@@ -37,7 +36,7 @@ handleScroll(event) {
       }
 
       //window.scrollTo(0,500);
-      this.props.activateScroll();
+      this.props.activateScroll();*/
 
 
 }
@@ -60,10 +59,40 @@ handleScroll(event) {
           </div>
         </div>
 
-        <div className="App-main">
+        <div className="draw">
+          <div className="btn-group btn-group-justified" style={{marginRight: 5, marginLeft: 5, marginTop: 10, width: '100%'}}>
+            <a className="btn btn-info color-picker upper-button">Blue</a>
+            <a className="btn btn-success color-picker">Green</a>
+            <a className="btn btn-warning color-picker">Yellow</a>
+            <a className="btn btn-danger color-picker">Red</a>
+            <a className="btn btn-success color-picker black-pick upper-button" style={{borderWidth: 0, backgroundColor: 'black'}} >Black</a>
+          </div>
+          <div className="clearfix"></div>
+
+          <div id="sketchContainer" style={{width: '100%', height: '100%', border: 1,}}>
+            <canvas id="sketch"></canvas>
+          </div>
+
+          <div className="btn-group btn-group-justified" style={{marginRight: 5, marginLeft: 5, marginTop: 10, width: '100%'}}>
+            <a className="btn btn-info user-color-pick bottom-button" style={{width: '30%'}}>User Color</a>
+            <a className="btn btn-success plus-size" style={{width: '15%'}}>
+              <i className="fa fa-plus-square">Plus</i>
+            </a>
+            <a className="btn btn-warning clear" style={{width: '15%'}}>
+              <i className="fa fa-times-circle">Clear</i>
+            </a>
+            <a className="btn btn-danger minus-size" style={{width: '15%'}}>
+              <i className="fa fa-minus-square">Minus</i>
+            </a>
+            <a className="btn btn-default eraser bottom-button" style={{width: '35%', borderTopWidth: 0}}>
+              <i className="fa fa-eraser">Eraser</i>
+            </a>
+          </div>
+
           <text>
              {this.props.scroll}
           </text>
+
         </div>
 
 
