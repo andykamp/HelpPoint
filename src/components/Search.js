@@ -22,9 +22,25 @@ class SearchArea extends React.Component {
 
 
     renderItems(){
-      
+
     }
     // Render
+    updateSearch(){
+
+    }
+
+    renderItems(){
+
+    }
+
+    render(){
+      return(
+        <div></div>
+      );
+    }
+
+
+    }
 
 
 export default SearchArea;
