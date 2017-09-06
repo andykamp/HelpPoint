@@ -22,9 +22,7 @@ class SearchArea extends React.Component {
 
 
     renderItems(){
-      if files.startsWith(e.target.value){
-        return this.state.results;
-      }
+      
     }
     // Render
 
