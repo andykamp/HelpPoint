@@ -25,6 +25,14 @@ class Search extends React.Component {
       }
     }
 
+    handleClick(t){
+      if(t == 'ansvar.pdf'){
+        browserHistory.push('/Backend');
+      } else {
+        browserHistory.push('/');
+      }
+
+    }
     getState(){
       return this.state.search;
     }
@@ -53,8 +61,16 @@ class Search extends React.Component {
       results = this.getResults();
 
 
+    var stationsArr = [];
+     for (var i = 0; i < results.length; i++) {
+         stationsArr = [...stationsArr,
+             <div className="station" style={{cursor: 'pointer'}} onClick={this.handleClick.bind(this,results[i])}>
+                 {results[i]};
+             </div>];
+     }
+
       return(
-        <div className='showResults'>{results}</div>
+        <div className='showResults'>{stationsArr}</div>
       );
     }
 
