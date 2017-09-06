@@ -48,6 +48,7 @@
     height: 60px;
     font-family: 'Varela Round', sans-serif;
     font-size: 30px;
+    margin-bottom: 5%;
   }
 
   .searchField{
@@ -80,6 +81,18 @@
     z-index: 2;
     right: 2%;
     position: absolute;
+  }
+
+  .pdf {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+  }
+
+  .item {
+    flex-direction: row;
+    flex: 1;
+    display: flex;
   }
 
   .bronnoysund {

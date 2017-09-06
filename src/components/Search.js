@@ -65,7 +65,11 @@ class Search extends React.Component {
      for (var i = 0; i < results.length; i++) {
          stationsArr = [...stationsArr,
              <div className="station" style={{cursor: 'pointer'}} onClick={this.handleClick.bind(this,results[i])}>
-                 {results[i]};
+
+                 <div className="item">
+                  <img src={require('./images/pdf.png')} alt="pdf" className="pdf" />
+                 <p>{results[i]}</p></div>
+
              </div>];
      }
 
