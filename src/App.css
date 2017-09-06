@@ -25,7 +25,7 @@
     flex-direction: column;
     flex: 1;
     width: 100%;
-    background-color: black;
+    background-color: white;
     align-items: center;
     justify-content: center;
     padding-top: 10px;
@@ -43,7 +43,6 @@
 
   .formControl{
     display: flex;
-    flex: 4;
     margin-top: 15%;
     width: 200px;
     height: 60px;
@@ -61,8 +60,26 @@
   .navpage_logo {
     align-items: center;
     justify-content: center;
-    width: 122px;
-    height: 77px;
+    width: 20%;
+    padding-top: 2%;
+  }
+
+  .Header_img_bottom {
+    height: auto;
+    width: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+
+  .navpage_logo_top {
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    padding-top: 2%;
+    z-index: 2;
+    right: 2%;
+    position: absolute;
   }
 
   .bronnoysund {

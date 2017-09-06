@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import { } from '../actions';
 import { browserHistory } from 'react-router';
 import { Form, FormControl, Button } from 'react-bootstrap';
-import SearchArea from './Search';
+import Search from './Search';
 
 
 
@@ -24,22 +24,12 @@ class Nav extends Component {
 
         <div className='helpPointHeader'>
           <div className = 'hpHeaderBody'>
-            <img />
+            <img src={require('./images/nav.png')} alt="nav" className="navpage_logo_top" />
+            <img src={require('./images/small_header.png')} alt="Header" className="Header_img_bottom" />
           </div>
         </div>
 
-        <div className="navbody">
-          <div className="navbody">
-            <img src={require('./images/nav.png')} alt="nav" className="navpage_logo" />
-          </div>
-        </div>
-
-        <Form inline>
-          <FormControl
-            className = 'formControl'
-            placeholder = 'Search file'
-          />
-        </Form>
+        <Search />
       </div>
     );
   }
