@@ -27,7 +27,7 @@ class Search extends React.Component {
 
     handleClick(t){
       if(t == 'ansvar.pdf'){
-        browserHistory.push('/Backend');
+        browserHistory.push('/ansvar');
       } else {
         browserHistory.push('/');
       }
