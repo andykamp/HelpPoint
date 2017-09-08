@@ -1,11 +1,11 @@
 // get the canvas element and its context
-var canvas = document.getElementById('sketch');
+var canvas = document.getElementsByTagName('Canvas')[0];
 var context = canvas.getContext('2d');
 
 // the aspect ratio is always based on 1140x400, height is calculated from width:
-canvas.width = $('#sketchContainer').outerWidth();
-canvas.height = (canvas.width/1140)*400;
-$('#sketchContainer').outerHeight(String(canvas.height) + "px", true);
+// canvas.width = $('#sketchContainer').outerWidth();
+// canvas.height = (canvas.width/1140)*400;
+// $('#sketchContainer').outerHeight(String(canvas.height) + "px", true);
 // scale function needs to know the width/height pre-resizing:
 var oWidth = canvas.width;
 var oHeight = canvas.height;

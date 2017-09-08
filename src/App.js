@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import firebase from 'firebase';
 import { connect } from 'react-redux'; //to get acces to the actioncreater
-import { writeScrollToDatabase, subscribeToScroll, activateScroll } from './actions'; //all the actions in the actioncreator
+import { writeScrollToDatabase, subscribeToScroll, activateScroll, startLoading } from './actions'; //all the actions in the actioncreator
 import './App.css';
+import MyPdfViewer from './components/Pdf';
 // togetherjs script
 import './togetherjs/togetherjs.html'
 // draw
@@ -15,16 +16,23 @@ import ReactDOM from 'react-dom'
 class App extends Component {
 //BACKEND//
 
+componentWillMount() {
+  this.props.startLoading();
+
+}
   componentDidMount() {
       window.addEventListener('scroll', this.handleScroll.bind(this));
       this.props.subscribeToScroll();
       // finds the button and adds the onclick attribute with the non react javascript
       ReactDOM.findDOMNode(this.refs.together).setAttribute('onclick', 'TogetherJS(this); return false;');
       // starts draw script
+
+      setTimeout(function(){
       const script = document.createElement("script");
       script.src = require('./togetherjs/draw.html')
       script.async = true;
       document.body.appendChild(script);
+    }, 10000);
   }
 
   componentWillUnmount() {
@@ -45,7 +53,11 @@ handleScroll(event) {
       this.props.activateScroll();
 }
 
-
+renderScreen(){
+  if(this.props.loading === true) {
+    //showspinner
+  }
+}
   render() {
     console.log('passivescroll', this.props.passiveScroll);
 
@@ -79,7 +91,7 @@ handleScroll(event) {
           <div className="clearfix"></div>
 
           <div id="sketchContainer" style={{width: '100%', height: '100%', border: 1,}}>
-            <canvas id="sketch"></canvas>
+            <MyPdfViewer />
           </div>
 
           <div className="btn-group btn-group-justified" style={{marginRight: 5, marginLeft: 5, marginTop: 10, width: '100%'}}>
@@ -102,11 +114,11 @@ handleScroll(event) {
           </text>
         </div>
 
-
       </div>
       <div className="under-Div">
         <h1>About us</h1>
       </div>
+
     </div>
     );
   }
@@ -116,8 +128,9 @@ handleScroll(event) {
 
 const mapStateToProps = (state) => {
   const { scroll, passiveScroll } = state.scroll;
+  const { loading } = state.pdf;
 
   //createQueue is from the reducer/index and is the reucer!
   return { scroll, passiveScroll };
 };
-export default connect(mapStateToProps, { writeScrollToDatabase, subscribeToScroll, activateScroll })(App);
+export default connect(mapStateToProps, { writeScrollToDatabase, subscribeToScroll, activateScroll, startLoading })(App);
