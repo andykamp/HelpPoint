@@ -27,7 +27,7 @@ class Search extends React.Component {
 
     handleClick(t){
       if(t == 'ansvar.pdf'){
-        browserHistory.push('/ansvar');
+        browserHistory.push('/nav/ansvar');
       } else {
         browserHistory.push('/');
       }
@@ -64,11 +64,14 @@ class Search extends React.Component {
     var stationsArr = [];
      for (var i = 0; i < results.length; i++) {
          stationsArr = [...stationsArr,
-             <div className="station" style={{cursor: 'pointer'}} onClick={this.handleClick.bind(this,results[i])}>
+             <div className="station" style={{cursor: 'pointer'}} onClick={this.handleClick.bind(this,results[i])} inline>
 
-                 <div className="item">
+                 <div className="item" inline>
+                  <p className='resultsOut'>
                   <img src={require('./images/pdf.png')} alt="pdf" className="pdf" />
-                 <p>{results[i]}</p></div>
+                  {results[i]}
+                  </p>
+                </div>
 
              </div>];
      }
