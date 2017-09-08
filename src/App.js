@@ -32,7 +32,7 @@ componentWillMount() {
       script.src = require('./togetherjs/draw.html')
       script.async = true;
       document.body.appendChild(script);
-    }, 10000);
+    }, 5000);
   }
 
   componentWillUnmount() {
@@ -64,17 +64,6 @@ renderScreen(){
     return (
       <div>
       <div className="App">
-
-        <div className="App-header">
-          <div className="header-image">
-            Backend
-          </div>
-
-
-          <div className="header-buttons">
-            Buttons
-          </div>
-        </div>
 
         <button className="btn-info" ref="together">
           Start Together
@@ -124,6 +113,18 @@ renderScreen(){
   }
   }
 
+  // <!--
+  //   <div className="App-header">
+  //     <div className="header-image">
+  //       Backend
+  //     </div>
+  //
+  //
+  //   <div className="header-buttons">
+  //       Buttons
+  //     </div>
+  //   </div>
+  //   -->
 
 
 const mapStateToProps = (state) => {
