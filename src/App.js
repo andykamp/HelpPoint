@@ -21,8 +21,8 @@ componentWillMount() {
 
 }
   componentDidMount() {
-      window.addEventListener('scroll', this.handleScroll.bind(this));
-      this.props.subscribeToScroll();
+      // window.addEventListener('scroll', this.handleScroll.bind(this));
+      // this.props.subscribeToScroll();
       // finds the button and adds the onclick attribute with the non react javascript
       ReactDOM.findDOMNode(this.refs.together).setAttribute('onclick', 'TogetherJS(this); return false;');
       // starts draw script
@@ -36,7 +36,7 @@ componentWillMount() {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    // window.removeEventListener('scroll', this.handleScroll);
   }
 
 
@@ -64,7 +64,7 @@ renderScreen(){
     return (
       <div>
       <div className="App">
-      
+
         <div className="App-header">
           <div className="header-image">
             Backend
@@ -90,8 +90,12 @@ renderScreen(){
           </div>
           <div className="clearfix"></div>
 
-          <div id="sketchContainer" style={{width: '100%', height: '100%', border: 1,}}>
-            <MyPdfViewer />
+          <div className="outsideWrapper" id="sketchContainer">
+              <div className="insideWrapper">
+                  <canvas className="coveringCanvas" id="sketch"></canvas>
+                  <MyPdfViewer className="coveredImage" />
+
+              </div>
           </div>
 
           <div className="btn-group btn-group-justified" style={{marginRight: 5, marginLeft: 5, marginTop: 10, width: '100%'}}>
@@ -109,9 +113,6 @@ renderScreen(){
               <i className="fa fa-eraser">Eraser</i>
             </a>
           </div>
-          <text>
-             {this.props.scroll}
-          </text>
         </div>
 
       </div>
@@ -123,7 +124,7 @@ renderScreen(){
     );
   }
   }
-
+  // <img className="coveredImage" src={require('./bilde.png')}/>
 
 
 const mapStateToProps = (state) => {
