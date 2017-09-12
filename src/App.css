@@ -35,20 +35,22 @@
   .outerDivSearch{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 100%;
 
   }
 
   .formControl{
     display: flex;
-    margin-top: 15%;
-    width: 200px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 50%;
     height: 60px;
     font-family: 'Varela Round', sans-serif;
     font-size: 30px;
-    margin-bottom: 5%;
+    margin-bottom: 1.4%;
+    margin-top: 3%;
+    padding: 1%;
   }
 
   .searchField{
@@ -56,6 +58,7 @@
     margin-right: auto;
     margin-top: 2%;
     width: 20%;
+    padding-left: 5%;
   }
 
   .navpage_logo {
@@ -93,6 +96,8 @@
 
   .resultsOut{
     font-size: 20px;
+    justify-content: center;
+    margin-left: 25%;
   }
 
   .item {
