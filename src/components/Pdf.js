@@ -3,6 +3,7 @@ import PDF from 'react-pdf-js';
 import { connect } from 'react-redux'; //to get acces to the actioncreater
 import { } from '../actions'; //all the actions in the actioncreator
 import pdf from '../Lonn.pdf'
+import {} from '../App.css';
 
 class MyPdfViewer extends React.Component {
   state = {};

@@ -64,24 +64,12 @@ renderScreen(){
     return (
       <div>
       <div className="App">
-      
-        <div className="App-header">
-          <div className="header-image">
-            Backend
-          </div>
-
-
-        <div className="header-buttons">
-            Buttons
-          </div>
-        </div>
-
-        <button className="btn-info" ref="together">
+        <button className="btnTogether btn-info" ref="together">
           Start Together
         </button>
 
         <div className="draw">
-          <div className="btn-group btn-group-justified" style={{marginRight: 5, marginLeft: 5, marginTop: 10, width: '100%'}}>
+          <div className="btnTop btn-group btn-group-justified" style={{width: '100%'}}>
             <a className="btn btn-info color-picker upper-button">Blue</a>
             <a className="btn btn-success color-picker">Green</a>
             <a className="btn btn-warning color-picker">Yellow</a>
@@ -94,7 +82,7 @@ renderScreen(){
             <MyPdfViewer />
           </div>
 
-          <div className="btn-group btn-group-justified" style={{marginRight: 5, marginLeft: 5, marginTop: 10, width: '100%'}}>
+          <div className="btnBottom btn-group btn-group-justified" style={{width: '100%'}}>
             <a className="btn btn-info user-color-pick bottom-button" style={{width: '30%'}}>User Color</a>
             <a className="btn btn-success plus-size" style={{width: '15%'}}>
               <i className="fa fa-plus-square">Plus</i>
@@ -109,9 +97,6 @@ renderScreen(){
               <i className="fa fa-eraser">Eraser</i>
             </a>
           </div>
-          <text>
-             {this.props.scroll}
-          </text>
         </div>
 
       </div>
