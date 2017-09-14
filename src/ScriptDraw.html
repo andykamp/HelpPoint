@@ -25,8 +25,9 @@ context.strokeStyle = '#000';
 
 // attach the mousedown, mouseout, mousemove, mouseup event listeners.
 canvas.addEventListener('mousedown', function (e) {
+  var offset = document.getElementById("sketchContainer");
 lastMouse = {
-  x: e.pageX - this.offsetLeft,
+  x: e.pageX - offset.offsetLeft,
   y: e.pageY - this.offsetTop
 };
 canvas.addEventListener('mousemove', move, false);

@@ -70,7 +70,7 @@ handleScroll(event) {
           <div className="clearfix"></div>
 
           <div id="sketchContainer" style={{width: '100%', height: '100%', border: 1,}}>
-            <canvas id="sketch"></canvas>
+            <canvas id="sketch"> </canvas>
           </div>
 
           <div className="btn-group btn-group-justified" style={{marginRight: 5, marginLeft: 5, marginTop: 10, width: '100%'}}>
