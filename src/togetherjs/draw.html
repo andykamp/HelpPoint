@@ -57,6 +57,7 @@ canvas.addEventListener('mouseup', function () {
 canvas.removeEventListener('mousemove', move, false);
 }, false);
 
+eraserCliked = false;
 // Sets the brush size:
 function setSize(size) {
 context.lineWidth = size;
@@ -64,14 +65,23 @@ context.lineWidth = size;
 
 // Sets the brush color:
 function setColor(color) {
+  if (eraserCliked) {
+    setSize(context.lineWidth-20)
+  }
 context.globalCompositeOperation = 'source-over';
 context.strokeStyle = color;
+eraserCliked = false;
 }
+
 
 // Sets the brush to erase-mode:
 function eraser() {
+if (!eraserCliked) {
+  setSize(context.lineWidth+20)
+}
 context.globalCompositeOperation = 'destination-out';
 context.strokeStyle = 'rgba(0,0,0,1)';
+eraserCliked = true;
 }
 
 // Clears the canvas and the lines-array:
@@ -229,7 +239,6 @@ $('.clear').click(function () {
 // Color-button functions:
 $('.color-picker').click(function () {
   var $this = $(this);
-  console.log($this);
   setColor($this.css("background-color"));
   changeMouse();
 });
@@ -364,7 +373,7 @@ window.addEventListener('scroll', function () {
       type: 'scroll',
       y: yscroll,
       x: xscroll,
-      passive: true
+      passive: true,
     });
   }
 }
@@ -384,7 +393,9 @@ TogetherJS.hub.on('scroll', function (msg) {
       var scroll = $(window).scrollTop(msg.y);
       //window.scrollTo(msg.x, msg.y);
 //send=true; //enables scrolling becous i must be able to scroll
-  setTimeout(function(){ send=true }, 30);
+  setTimeout(function(){
+    send=true;
+  }, 30);
 
 
 
@@ -415,7 +426,6 @@ TogetherJS.hub.on('zoom', function (msg) {
   }
   document.getElementById('sketchContainer').style.zoom= msg.zooomTo;
   dontDraw = msg.dontDraw1;
-  console.log(msg.dontDraw1);
   changeMouseOnClick();
 });
 ////
