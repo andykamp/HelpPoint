@@ -352,6 +352,7 @@
   position: bottom;
 }
 
+/*color shit*/
 .footer{
   width: 100%;
   position: fixed;
@@ -360,16 +361,47 @@
   margin-top: 3%;
 }
 
+.plus{
+  height: 10px;
+  width: 10px;
+}
+.minus{
+  height: 10px;
+  width: 10px;
+}
+
 .btnMiddle{
   background-color: #B2B3C4;
   border-color: #B2B3C4;
   border-left: black;
   color: white;
 }
+
+
 .btnMiddle:hover{
   background-color: grey;
   border-color: grey;
 }
+
+.btnScreenShot{
+  background-color: #9B9BAB;
+  border-color: #9B9BAB;
+}
+
+.btnScreenShot:hover{
+  background-color: grey;
+  border-color: grey;
+}
+
+.btnDarkBlue{
+  background-color: #002054;
+  border-color: #002054;
+}
+.btnDarkBlue:hover{
+  background-color: #00112d;
+  border-color: #00112d;
+}
+
 
 .btnTop{
   width: 100%;
