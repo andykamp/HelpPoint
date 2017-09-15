@@ -69,24 +69,26 @@ renderScreen(){
 
         <div className = "divAroundThis">
           <div className="btnTop btn-group btn-group-justified" style={{width: '100%'}}>
-            <a className="btnDarkBlue btn btn-primary color-picker">Dark blue</a>
-            <a className="btn btn-info color-picker upper-button">Cyan</a>
-            <a className="btn btn-success color-picker">Green</a>
 
-
-              <a className="btnMiddle btn btn-info">
-                <img src={require('./components/images/plus.png')} alt="plus" className="plus" />
-              </a>
-              <a className="btnScreenShot btn btn-info">Screenshot</a>
-              <a className="btnMiddle btn btn-info">
-                <img src={require('./components/images/minus.png')} alt="minus" className="minus" />
-              </a>
-
-
-            <a className="btn btn-warning color-picker">Yellow</a>
-            <a className="btn btn-danger color-picker">Red</a>
-            <a className="btn btn-success color-picker black-pick upper-button" style={{borderWidth: 0, backgroundColor: 'black'}} >Black</a>
-
+            <a className="btnLeft btn btn-success color-picker">Green</a>
+            <a className="btnLeft btn btn-danger color-picker">Red</a>
+            <a className="btnLeft btnBlack btn btn-success color-picker black-pick upper-button">Black</a>
+            <a className="btnMiddle btn btn-info">
+              <img src={require('./components/images/plus.png')} alt="plus" className="plus" />
+            </a>
+            <div className="btnMidt btn btn-info">
+              <img src={require('./components/images/SmallLogo.png')} alt="midtlogo" className="midtlogo" />
+            </div>
+            <a className="btnMiddle btn btn-info">
+              <img src={require('./components/images/minus.png')} alt="minus" className="minus" />
+            </a>
+            <a className="btnScreenShot btn btn-info">Screenshot</a>
+            <a className="btn btnClear btn-warning clear">
+              <i className="fa fa-times-circle">Clear</i>
+            </a>
+            <a className="btnEraser btn btn-default eraser bottom-button" >
+              <i className="fa fa-eraser">Eraser</i>
+            </a>
           </div>
           </div>
 
@@ -102,13 +104,10 @@ renderScreen(){
           </div>
 
           <footer class="fixed-bottom" className="footer btn-group btn-group-justified">
-            <a className="btn btn-info user-color-pick bottom-button">User Color</a>
-            <a className="btn btn-warning clear">
-              <i className="fa fa-times-circle">Clear</i>
-            </a>
-            <a className="btn btn-default eraser bottom-button" >
-              <i className="fa fa-eraser">Eraser</i>
-            </a>
+            <div>
+
+
+            </div>
           </footer>
         </div>
 
