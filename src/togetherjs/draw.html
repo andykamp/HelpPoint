@@ -30,7 +30,7 @@ context.strokeStyle = '#000';
   canvas.height = ((canvas.width/W)*H)*2;
   reDraw(lines*2);
 }, 14000);*/
-var Zoom = 0.5;
+var dontDraw = false;
 /*setTimeout(function(){
    var scroll = $(window).scrollTop(200);
 }, 14000);*/
@@ -40,10 +40,12 @@ var Zoom = 0.5;
 // attach the mousedown, mouseout, mousemove, mouseup event listeners.
 var offset = document.getElementById('sketchContainer');
 canvas.addEventListener('mousedown', function (e) {
+  if(!dontDraw){
 lastMouse = {
   x: e.pageX - offset.offsetLeft,
   y: e.pageY - offset.offsetTop
 };
+}
 canvas.addEventListener('mousemove', move, false);
 }, false);
 
@@ -91,6 +93,7 @@ for (var i in lines) {
 }
 // Draws the lines, called by move and the TogetherJS event listener:
 function draw(start, end, color, size, compositeOperation, save) {
+  if (!dontDraw) {
 context.save();
 context.lineJoin = 'round';
 context.lineCap = 'round';
@@ -108,6 +111,7 @@ context.restore();
 if (save) {
   // Won't save if draw() is called from reDraw().
   lines.push([{x: start.x, y: start.y}, {x: end.x, y: end.y}, color, size, compositeOperation]);
+}
 }
 }
 
@@ -175,7 +179,6 @@ lines = msg.lines;
 $(document).ready(function () {
 // changeMouse creates a temporary invisible canvas that shows the cursor, which is then set as the cursor through css:
 function changeMouse() {
-  // Makes sure the cursorSize is scaled:
   var cursorSize = context.lineWidth*(canvas.width/W);
   if (cursorSize < 10){
       cursorSize = 10;
@@ -194,7 +197,12 @@ function changeMouse() {
   ctx.lineWidth = 3;
   ctx.strokeStyle = cursorColor;
   ctx.stroke();
-  $('#sketch').css('cursor', 'url(' + cursorGenerator.toDataURL('image/png') + ') ' + cursorSize/2 + ' ' + cursorSize/2 + ',crosshair');
+  if(dontDraw){
+    $('#sketch').css( 'cursor', 'not-allowed' );
+  }else if (!dontDraw) {
+    $('#sketch').css('cursor', 'url(' + cursorGenerator.toDataURL('image/png') + ') ' + cursorSize/2 + ' ' + cursorSize/2 + ',crosshair');
+
+  }
 }
 // Init mouse
 changeMouse();
@@ -279,28 +287,59 @@ ZoomOut();
 });
 
 $('#zoomOrigin').click(function () {
-ZoomOut();
+ZoomOrigin();
 // resizeCanvas();
 //Zoom=0.5;
 
 });
 
 function ZoomIn() {
-document.getElementById('sketchContainer').style.zoom="150%"
-ZoomMessage("150%");
-
+  document.getElementById('sketchContainer').style.zoom="150%"
+  dontDraw=true;
+  ZoomMessage("150%");
+  $('#sketch').css( 'cursor', 'not-allowed' );
 }
 
 function ZoomOut() {
-document.getElementById('sketchContainer').style.zoom="50%"
-ZoomMessage("50%");
-
+document.getElementById('sketchContainer').style.zoom="100%"
+dontDraw=false;
+ZoomMessage("100%");
+changeMouseOnClick();
 }
 
 function ZoomOrigin() {
 document.getElementById('sketchContainer').style.zoom="100%"
+dontDraw=false;
 ZoomMessage("100%");
+changeMouseOnClick();
 
+}
+
+function changeMouseOnClick() {
+  var cursorSize = context.lineWidth*(canvas.width/W);
+  if (cursorSize < 10){
+      cursorSize = 10;
+  }
+  var cursorColor = context.strokeStyle;
+  var cursorGenerator = document.createElement('canvas');
+  cursorGenerator.width = cursorSize;
+  cursorGenerator.height = cursorSize;
+  var ctx = cursorGenerator.getContext('2d');
+
+  var centerX = cursorGenerator.width/2;
+  var centerY = cursorGenerator.height/2;
+
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, (cursorSize/2)-4, 0, 2 * Math.PI, false);
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = cursorColor;
+  ctx.stroke();
+  if(dontDraw){
+    $('#sketch').css( 'cursor', 'not-allowed' );
+  }else if (!dontDraw) {
+    $('#sketch').css('cursor', 'url(' + cursorGenerator.toDataURL('image/png') + ') ' + cursorSize/2 + ' ' + cursorSize/2 + ',crosshair');
+
+  }
 }
 
 //////////////////scroll
@@ -359,13 +398,11 @@ function setSend() {
 
 
 function ZoomMessage(degree) {
-
-
   if (TogetherJS.running) {
-
     TogetherJS.send({
       type: 'zoom',
       zooomTo: degree,
+      dontDraw1: dontDraw
     });
   }
 
@@ -376,12 +413,10 @@ TogetherJS.hub.on('zoom', function (msg) {
   if (!msg.sameUrl) {
       return;
   }
-
   document.getElementById('sketchContainer').style.zoom= msg.zooomTo;
-
-
-
-
+  dontDraw = msg.dontDraw1;
+  console.log(msg.dontDraw1);
+  changeMouseOnClick();
 });
 ////
 

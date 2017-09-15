@@ -24,7 +24,7 @@ const customStyles = {
       left              : 0,
       right             : 0,
       bottom            : 0,
-      backgroundColor   : 'rgba(255, 255, 255, 0.75)'
+      backgroundColor   : 'rgba(255, 255, 255, 0.75)',
     },
     content : {
       position                   : 'absolute',
@@ -33,13 +33,12 @@ const customStyles = {
       right                      : '0px',
       bottom                     : '0px',
       border                     : '1px solid #ccc',
-      background                 : '#95CAFE',
+      background                 : 'gray',
       overflow                   : 'auto',
       WebkitOverflowScrolling    : 'touch',
       borderRadius               : '4px',
       outline                    : 'none',
-      padding                    : '20px'
-
+      padding                    : '20px',
     }
 };
 
@@ -113,12 +112,17 @@ renderScreen(){
 
   render() {
     console.log('isLoading', this.props.loading);
-
+    document.body.style.backgroundColor = "grey";
     return (
       <div>
         <Modal
          isOpen={this.state.isActive}
          style={customStyles}
+         className={{
+          base: 'myModal',
+          afterOpen: 'myModal',
+          beforeClose: 'myModal'
+        }}
          >
           <div className='spinner'>
             <BeatLoader
@@ -136,7 +140,7 @@ renderScreen(){
         <div className="draw">
 
         <div className = "divAroundThis">
-          <div className="btnTop btn-group btn-group-justified" style={{width: '100%'}}>
+          <div id="topButton" className="btnTop btn-group btn-group-justified" style={{width: '100%'}}>
 
 
             <a className="btnLeft btn btn-success color-picker">Green</a>
@@ -147,7 +151,7 @@ renderScreen(){
               <img src={require('./components/images/minus.png')} alt="minus" className="minus" />
             </a>
             <div className="btnMidt btn btn-info" id="zoomOrigin">
-              <img src={require('./components/images/SmallLogo.png')} alt="midtlogo" className="midtlogo" />
+              <img src={require('./components/images/SmallLogo1.png')} alt="midtlogo" className="midtlogo" />
             </div>
             <a className="btnMiddle btn btn-info" id="zoomIn">
               <img src={require('./components/images/plus.png')} alt="plus" className="plus" />
