@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import firebase from 'firebase';
 import { connect } from 'react-redux'; //to get acces to the actioncreater
+import { BeatLoader } from 'react-spinners';
+
 import { writeScrollToDatabase, subscribeToScroll, activateScroll, startLoading } from './actions'; //all the actions in the actioncreator
 import './App.css';
 import MyPdfViewer from './components/Pdf';
+import html2canvas from './togetherjs/html2canvas.js';
 // togetherjs script
 import './togetherjs/togetherjs.html'
 // draw
@@ -28,11 +31,23 @@ componentWillMount() {
       // starts draw script
 
       setTimeout(function(){
+
+
+    }, 5000);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('NEXTPROPS');
+    if (nextProps.loading === false){
+      setTimeout(function(){
+
+      console.log('NEXTPROPS SCRIPT CALLED');
       const script = document.createElement("script");
       script.src = require('./togetherjs/draw.html')
       script.async = true;
       document.body.appendChild(script);
-    }, 5000);
+    }, 100);
+    }
   }
 
   componentWillUnmount() {
@@ -58,11 +73,27 @@ renderScreen(){
     //showspinner
   }
 }
+renderscreen() {
+
+    return (
+     <div className='App'>
+       <BeatLoader
+         color={'#95CAFE'}
+         loading={this.props.loading}
+
+       />
+     </div>
+   )
+
+
+}
+
   render() {
-    console.log('passivescroll', this.props.passiveScroll);
+    console.log('isLoading', this.props.loading);
 
     return (
       <div>
+          
       <div className="App">
 
         <div className="App-header">
@@ -81,6 +112,7 @@ renderScreen(){
         </button>
 
         <div className="draw">
+
           <div className="btn-group btn-group-justified" style={{marginRight: 5, marginLeft: 5, marginTop: 10, width: '100%'}}>
             <a className="btn btn-info color-picker upper-button">Blue</a>
             <a className="btn btn-success color-picker">Green</a>
@@ -90,10 +122,10 @@ renderScreen(){
           </div>
           <div className="clearfix"></div>
 
-          <div className="outsideWrapper" id="sketchContainer">
-              <div className="insideWrapper">
+          <div className="outsideWrapper" id="sketchContainer" style={{width: 729}}>
+              <div className="insideWrapper" id="insideWrapper">
                   <canvas className="coveringCanvas" id="sketch"></canvas>
-                  <MyPdfViewer className="coveredImage" />
+                  <MyPdfViewer className="coveredImage" id="underpdf"/>
 
               </div>
           </div>
@@ -118,6 +150,10 @@ renderScreen(){
       </div>
       <div className="under-Div">
         <h1>About us</h1>
+        <button className="zoom" style={{ height: 30}}>Zoom in to 1.5</button>
+        <button className="zoomout" style={{ height: 30}}>Zoom out to 0.5</button>
+<a id="download" download="image.png"><button  className="save" id="download" download="image.png" style={{ height: 30}}>save</button></a>
+
       </div>
 
     </div>
@@ -132,6 +168,6 @@ const mapStateToProps = (state) => {
   const { loading } = state.pdf;
 
   //createQueue is from the reducer/index and is the reucer!
-  return { scroll, passiveScroll };
+  return { scroll, passiveScroll, loading };
 };
 export default connect(mapStateToProps, { writeScrollToDatabase, subscribeToScroll, activateScroll, startLoading })(App);

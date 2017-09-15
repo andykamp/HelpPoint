@@ -1,7 +1,7 @@
 import React from 'react';
 import PDF from 'react-pdf-js';
 import { connect } from 'react-redux'; //to get acces to the actioncreater
-import { } from '../actions'; //all the actions in the actioncreator
+import { stopLoading } from '../actions'; //all the actions in the actioncreator
 import pdf from '../Lonn.pdf'
 
 class MyPdfViewer extends React.Component {
@@ -9,7 +9,7 @@ class MyPdfViewer extends React.Component {
 
   onDocumentComplete = (pages) => {
     this.setState({ page: 1, pages });
-
+    this.props.stopLoading();
   }
 
   onPageComplete = (page) => {
@@ -51,7 +51,7 @@ class MyPdfViewer extends React.Component {
     return (
       <div>
         <PDF file={pdf} onDocumentComplete={this.onDocumentComplete} onPageComplete={this.onPageComplete} page={this.state.page} />
-        {pagination}
+
       </div>
     )
   }
@@ -64,4 +64,4 @@ const mapStateToProps = (state) => {
   return {  };
 };
 
-export default connect(mapStateToProps, { })(MyPdfViewer);
+export default connect(mapStateToProps, { stopLoading })(MyPdfViewer);
