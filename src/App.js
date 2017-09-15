@@ -93,7 +93,7 @@ renderscreen() {
 
     return (
       <div>
-          
+
       <div className="App">
 
         <div className="App-header">
@@ -152,7 +152,7 @@ renderscreen() {
         <h1>About us</h1>
         <button className="zoom" style={{ height: 30}}>Zoom in to 1.5</button>
         <button className="zoomout" style={{ height: 30}}>Zoom out to 0.5</button>
-<a id="download" download="image.png"><button  className="save" id="download" download="image.png" style={{ height: 30}}>save</button></a>
+<a id="download"><button  className="save" style={{ height: 30}}>save</button></a>
 
       </div>
 

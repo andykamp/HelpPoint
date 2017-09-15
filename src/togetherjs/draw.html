@@ -30,7 +30,7 @@ context.strokeStyle = '#000';
   canvas.height = ((canvas.width/W)*H)*2;
   reDraw(lines*2);
 }, 14000);*/
-var Zoom = 1;
+var Zoom = 0.5;
 /*setTimeout(function(){
    var scroll = $(window).scrollTop(200);
 }, 14000);*/
@@ -41,8 +41,8 @@ var Zoom = 1;
 var offset = document.getElementById('sketchContainer');
 canvas.addEventListener('mousedown', function (e) {
 lastMouse = {
-  x: e.pageX - offset.offsetLeft*Zoom,
-  y: e.pageY - offset.offsetTop*Zoom
+  x: e.pageX - offset.offsetLeft,
+  y: e.pageY - offset.offsetTop
 };
 canvas.addEventListener('mousemove', move, false);
 }, false);
@@ -114,8 +114,8 @@ if (save) {
 // Called whenever the mousemove event is fired, calls the draw function:
 function move(e) {
 var mouse = {
-  x: e.pageX - offset.offsetLeft*Zoom,
-  y: e.pageY - offset.offsetTop*Zoom
+  x: e.pageX - offset.offsetLeft,
+  y: e.pageY - offset.offsetTop
 };
 // Translates the coordinates from the local canvas size to WxH:
 sendMouse = {
@@ -249,14 +249,31 @@ $('.minus-size').click(function() {
   changeMouse();
 });
 });
+
+// resize
+function resizeCanvas(){
+  if ($('#sketchContainer').width() != oWidth) {
+    canvas.width = $('#sketchContainer').width();
+    canvas.height = (canvas.width/W)*H;
+    $('#sketchContainer').outerHeight(String(canvas.height)+"px", true);
+    var ratio = canvas.width/oWidth;
+    oWidth = canvas.width;
+    oHeight = canvas.height;
+    reDraw(lines);
+    changeMouse();
+  }
+}
+
 ////zoom
 $('.zoom').click(function () {
 ZoomIn();
+// resizeCanvas();
 //Zoom=0.5;
 });
 
 $('.zoomout').click(function () {
 ZoomOut();
+// resizeCanvas();
 //Zoom=0.5;
 
 });
@@ -357,12 +374,12 @@ TogetherJS.hub.on('zoom', function (msg) {
 
 $('.save').click(function () {
   html2canvas(document.getElementById('sketchContainer'), {
+    logging: true,
     onrendered: function(canvas) {
-      //tested in crome. saves and opens image
-      var download = document.getElementById("download");
-       var image = canvas.toDataURL("image/png")
-                   .replace("image/png", "image/octet-stream");
-       download.setAttribute("href", image);
+      var a = document.createElement('a');
+      a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+      a.download = 'nav-support.jpg';
+      a.click();
     }
   });
 
