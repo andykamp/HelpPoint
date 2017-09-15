@@ -265,13 +265,20 @@ function resizeCanvas(){
 }
 
 ////zoom
-$('.zoom').click(function () {
+$('#zoomIn').click(function () {
 ZoomIn();
 // resizeCanvas();
 //Zoom=0.5;
 });
 
-$('.zoomout').click(function () {
+$('#zoomOut').click(function () {
+ZoomOut();
+// resizeCanvas();
+//Zoom=0.5;
+
+});
+
+$('#zoomOrigin').click(function () {
 ZoomOut();
 // resizeCanvas();
 //Zoom=0.5;
@@ -287,6 +294,12 @@ ZoomMessage("150%");
 function ZoomOut() {
 document.getElementById('sketchContainer').style.zoom="50%"
 ZoomMessage("50%");
+
+}
+
+function ZoomOrigin() {
+document.getElementById('sketchContainer').style.zoom="100%"
+ZoomMessage("100%");
 
 }
 
@@ -372,7 +385,7 @@ TogetherJS.hub.on('zoom', function (msg) {
 });
 ////
 
-$('.save').click(function () {
+$('#save').click(function () {
   html2canvas(document.getElementById('sketchContainer'), {
     logging: true,
     onrendered: function(canvas) {

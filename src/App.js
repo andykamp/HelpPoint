@@ -132,31 +132,42 @@ renderScreen(){
 
       <div className="App">
 
-        <div className="App-header">
-          <div className="header-image">
-            Backend
-          </div>
-
-
-        <div className="header-buttons">
-            Buttons
-          </div>
-        </div>
-
-        <button className="btn-info" ref="together">
-          Start Together
-        </button>
 
         <div className="draw">
 
-          <div className="btn-group btn-group-justified" style={{marginRight: 5, marginLeft: 5, marginTop: 10, width: '100%'}}>
-            <a className="btn btn-info color-picker upper-button">Blue</a>
-            <a className="btn btn-success color-picker">Green</a>
-            <a className="btn btn-warning color-picker">Yellow</a>
-            <a className="btn btn-danger color-picker">Red</a>
-            <a className="btn btn-success color-picker black-pick upper-button" style={{borderWidth: 0, backgroundColor: 'black'}} >Black</a>
+        <div className = "divAroundThis">
+          <div className="btnTop btn-group btn-group-justified" style={{width: '100%'}}>
+
+
+            <a className="btnLeft btn btn-success color-picker">Green</a>
+            <a className="btnLeft btn btn-danger color-picker">Red</a>
+            <a className="btnLeft btnBlack btn btn-success color-picker black-pick upper-button">Black</a>
+
+            <a className="btnMiddle btn btn-info" id="zoomOut">
+              <img src={require('./components/images/minus.png')} alt="minus" className="minus" />
+            </a>
+            <div className="btnMidt btn btn-info" id="zoomOrigin">
+              <img src={require('./components/images/SmallLogo.png')} alt="midtlogo" className="midtlogo" />
+            </div>
+            <a className="btnMiddle btn btn-info" id="zoomIn">
+              <img src={require('./components/images/plus.png')} alt="plus" className="plus" />
+            </a>
+
+            <a className="btnScreenShot btn btn-info" id="save">Screenshot</a>
+            <a className="btn btnClear btn-warning clear">
+              <i className="fa fa-times-circle">Clear</i>
+            </a>
+            <a className="btnEraser btn btn-default eraser bottom-button" >
+              <i className="fa fa-eraser">Eraser</i>
+            </a>
           </div>
-          <div className="clearfix"></div>
+          </div>
+
+          <div className="getTogetherBtn">
+          <button className="btnTogether btn-info" ref="together">
+            Start Together
+          </button>
+          </div>
 
           <div className="outsideWrapper" id="sketchContainer" style={{width: 729}}>
               <div className="insideWrapper" id="insideWrapper">
@@ -166,29 +177,13 @@ renderScreen(){
               </div>
           </div>
 
-          <div className="btn-group btn-group-justified" style={{marginRight: 5, marginLeft: 5, marginTop: 10, width: '100%'}}>
-            <a className="btn btn-info user-color-pick bottom-button" style={{width: '30%'}}>User Color</a>
-            <a className="btn btn-success plus-size" style={{width: '15%'}}>
-              <i className="fa fa-plus-square">Plus</i>
-            </a>
-            <a className="btn btn-warning clear" style={{width: '15%'}}>
-              <i className="fa fa-times-circle">Clear</i>
-            </a>
-            <a className="btn btn-danger minus-size" style={{width: '15%'}}>
-              <i className="fa fa-minus-square">Minus</i>
-            </a>
-            <a className="btn btn-default eraser bottom-button" style={{width: '35%', borderTopWidth: 0}}>
-              <i className="fa fa-eraser">Eraser</i>
-            </a>
-          </div>
-        </div>
+          <footer class="fixed-bottom" className="footer btn-group btn-group-justified">
+            <div>
 
-      </div>
-      <div className="under-Div">
-        <h1>About us</h1>
-        <button className="zoom" style={{ height: 30}}>Zoom in to 1.5</button>
-        <button className="zoomout" style={{ height: 30}}>Zoom out to 0.5</button>
-<a id="download"><button  className="save" style={{ height: 30}}>save</button></a>
+
+            </div>
+          </footer>
+        </div>
 
       </div>
 

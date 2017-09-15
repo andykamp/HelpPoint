@@ -8,10 +8,10 @@ import { Form, FormControl, Button } from 'react-bootstrap';
 import $ from 'jquery';
 
 let files = [
-  'ansvar.pdf',
-  'inntekt.pdf',
-  'test.pdf',
-  'ansvaret.pdf'
+  'Lønnsgarantidekning.pdf',
+  'Kompetansestrategi.pdf',
+  'Tillegsstønader.pdf',
+  'Egenvurdering.pdf'
 
 ]
 
@@ -26,8 +26,8 @@ class Search extends React.Component {
     }
 
     handleClick(t){
-      if(t == 'ansvar.pdf'){
-        browserHistory.push('/nav/ansvar');
+      if(t == 'Lønnsgarantidekning.pdf'){
+        browserHistory.push('/nav/lonnsgarantidekning');
       } else {
         browserHistory.push('/');
       }
@@ -38,7 +38,7 @@ class Search extends React.Component {
     }
 
     updateSearch(event){
-      this.setState({search: event.target.value});
+      this.setState({search: event.target.value.toLowerCase()});
       this.renderItems();
     }
 
@@ -47,7 +47,7 @@ class Search extends React.Component {
       let results = [];
       let file;
       for (var i = 0; i < files.length; i++) {
-        if(files[i].startsWith(search)){
+        if(files[i].toLowerCase().startsWith(search)){
           results = [...results, files[i]];
         }
       }
@@ -68,7 +68,7 @@ class Search extends React.Component {
 
                  <div className="item" inline>
                   <p className='resultsOut'>
-                  <img src={require('./images/pdf.png')} alt="pdf" className="pdf" />
+                  <img src={require('./images/pdf-logo.png')} alt="pdf" className="pdf" />
                   {results[i]}
                   </p>
                 </div>

@@ -40,17 +40,51 @@
     padding-bottom: 40px;
   }
 
+  .ComputerImg {
+    width: 30%;
+    height: auto;
+  }
+
+  .Header_img {
+    height: auto;
+    width: 100%;
+  }
+
+  .Logos {
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+
+  .Home_body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
   .dnb {
-
-    width: 117px;
-    height: 60px;
-
+    width: 15%;
+    height: auto;
+    margin-right: 10%;
   }
 
   .nav {
     cursor: pointer;
-    width: 122px;
-    height: 77px;
+    width: 15%;
+    height: auto;
+    margin-left: 10%;
+  }
+
+  .bronnoysund {
+
+    width: 30%;
+    height: auto;
   }
 
   .navbody {
@@ -68,20 +102,22 @@
   .outerDivSearch{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 100%;
 
   }
 
   .formControl{
     display: flex;
-    margin-top: 15%;
-    width: 200px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 50%;
     height: 60px;
     font-family: 'Varela Round', sans-serif;
     font-size: 30px;
-    margin-bottom: 5%;
+    margin-bottom: 1.4%;
+    margin-top: 3%;
+    padding: 1%;
   }
 
   .searchField{
@@ -89,6 +125,7 @@
     margin-right: auto;
     margin-top: 2%;
     width: 20%;
+    padding-left: 5%;
   }
 
   .navpage_logo {
@@ -116,6 +153,10 @@
     position: absolute;
   }
 
+  .draw{
+
+  }
+
   .pdf {
     height: 25px;
     width: 25px;
@@ -126,6 +167,8 @@
 
   .resultsOut{
     font-size: 20px;
+    justify-content: center;
+    margin-left: 25%;
   }
 
   .item {
@@ -181,6 +224,15 @@
   background-color: white;
 }
 
+.btn{
+  border-radius: 0;
+  font-family: 'Varela Round', sans-serif;
+}
+.fa{
+  font-style: normal;
+  font-family: 'Varela Round', sans-serif;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -191,6 +243,7 @@
   height: 150px;
   padding: 20px;
   color: white;
+
 }
 
 .App-intro {
@@ -201,11 +254,26 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  padding: 20px;
+  align-items: center;
+  width: 100%;
+  background-color: grey;
 }
-.btn-info{
+
+.btnTogether{
+  top:auto;
   justify-content: center;
+  width: 100%;
+  background-color: #2c3e50;
+  border-color: #2c3e50;
+  margin-bottom: 1%;
+}
+.btnTogether:onclick{
+  background-color: #002B38;
+  border-color: #002B38;
+}
+.btnTogether:hover{
+  background-color: #2c3e50;
+  border-color: #2c3e50;
 }
 
 .header-image{
@@ -225,6 +293,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   height: 15%;
   background-color: #2c3e50;
   padding-left: 10px;
@@ -319,9 +388,104 @@
   padding: 20px;
   color: #ffffff;
   font-size: large;
-
-
+  height: 70px;
+  position: bottom;
 }
+
+/*color shit*/
+.footer{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-top: 3%;
+}
+
+.plus{
+  height: 15px;
+  width: 15px;
+}
+.minus{
+  height: 15px;
+  width: 15px;
+}
+
+.btnLeft{
+  float:left;
+  width: 10%
+}
+
+.btnMiddle{
+  background-color: #B2B3C4;
+  border-color: #B1B3C4;
+  border-left: black;
+  color: white;
+  float: center;
+}
+
+
+.btnMiddle:hover{
+  background-color: grey;
+  border-color: grey;
+}
+
+.btnScreenShot{
+  background-color: #4f4f4f;
+  border-color: #4f4f4f;
+  float: right;
+}
+
+.btnScreenShot:hover{
+  background-color: #1c1b1b;
+  border-color: #1c1b1b;
+}
+.btnBlack{
+  background-color: black;
+  border-color: black;
+}
+.btnBlack:hover{
+  background-color: black;
+  border-color: black;
+}
+
+.midtlogo{
+  height: auto;
+  width: 50%;
+}
+.btnMidt{
+  height: 35px;
+  background-color: white;
+  border-color: white;
+}
+.btnMidt:hover{
+  height: 35px;
+  background-color: white;
+  border-color: white;
+}
+
+.btnEraser{
+  float:right;
+  width:10%;
+}
+
+.btnClear{
+  float: right;
+  width:10%;
+}
+
+
+.btnTop{
+  width: 100%;
+  position: fixed;
+  left: 0;
+  height: 5%;
+}
+.divAroundThis{
+  margin-bottom: 7%;
+}
+
+
+
 .info{
   height: 60px;
   flex-direction: column;

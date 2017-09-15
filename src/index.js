@@ -24,7 +24,7 @@ ReactDOM.render(
     <Route path="/Backend" component={App} />
     <Route path="/" component={Home} />
     <Route path="/nav" component={Nav} />
-    <Route path="/nav/ansvar" component={App} />
+    <Route path="/nav/lonnsgarantidekning" component={App} />
 
   </Router>
 </Provider>, document.getElementById('root'));
