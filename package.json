@@ -14,6 +14,8 @@
     "react-router-dom": "^4.0.0",
     "react-scripts": "1.0.11",
     "react-search-box": "0.0.6",
+    "react-simple-dropdown": "^3.2.0",
+    "react-sticky": "^6.0.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
   },

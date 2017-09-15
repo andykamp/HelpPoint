@@ -68,7 +68,7 @@ class Search extends React.Component {
 
                  <div className="item" inline>
                   <p className='resultsOut'>
-                  <img src={require('./images/pdf.png')} alt="pdf" className="pdf" />
+                  <img src={require('./images/pdf-logo.png')} alt="pdf" className="pdf" />
                   {results[i]}
                   </p>
                 </div>
