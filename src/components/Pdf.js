@@ -9,6 +9,7 @@ class MyPdfViewer extends React.Component {
 
   onDocumentComplete = (pages) => {
     this.setState({ page: 1, pages });
+    console.log('SHOULD CALL STOPOADING');
     this.props.stopLoading();
   }
 

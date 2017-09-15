@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import firebase from 'firebase';
 import { connect } from 'react-redux'; //to get acces to the actioncreater
 import { BeatLoader } from 'react-spinners';
+import Modal from 'react-modal';
 
 import { writeScrollToDatabase, subscribeToScroll, activateScroll, startLoading } from './actions'; //all the actions in the actioncreator
 import './App.css';
@@ -16,11 +17,44 @@ import './togetherjs/togetherjs.html'
 import ReactDOM from 'react-dom'
 
 
+const customStyles = {
+  overlay : {
+      position          : 'fixed',
+      top               : 0,
+      left              : 0,
+      right             : 0,
+      bottom            : 0,
+      backgroundColor   : 'rgba(255, 255, 255, 0.75)'
+    },
+    content : {
+      position                   : 'absolute',
+      top                        : '0px',
+      left                       : '0px',
+      right                      : '0px',
+      bottom                     : '0px',
+      border                     : '1px solid #ccc',
+      background                 : '#95CAFE',
+      overflow                   : 'auto',
+      WebkitOverflowScrolling    : 'touch',
+      borderRadius               : '4px',
+      outline                    : 'none',
+      padding                    : '20px'
+
+    }
+};
+
 class App extends Component {
-//BACKEND//
+  constructor(props) {
+    super(props);
+    this.state = {
+      isActive: true,
+      loadSpinner: true
+    };
+  }
 
 componentWillMount() {
   this.props.startLoading();
+  Modal.setAppElement('body');
 
 }
   componentDidMount() {
@@ -29,11 +63,10 @@ componentWillMount() {
       // finds the button and adds the onclick attribute with the non react javascript
       ReactDOM.findDOMNode(this.refs.together).setAttribute('onclick', 'TogetherJS(this); return false;');
       // starts draw script
-
+      const that=this;
       setTimeout(function(){
-
-
-    }, 5000);
+        that.setState({isActive: false});
+    }, 2000);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -46,7 +79,7 @@ componentWillMount() {
       script.src = require('./togetherjs/draw.html')
       script.async = true;
       document.body.appendChild(script);
-    }, 100);
+    }, 2000);
     }
   }
 
@@ -68,31 +101,34 @@ handleScroll(event) {
       this.props.activateScroll();
 }
 
+
 renderScreen(){
   if(this.props.loading === true) {
     //showspinner
   }
 }
-renderscreen() {
-
-    return (
-     <div className='App'>
-       <BeatLoader
-         color={'#95CAFE'}
-         loading={this.props.loading}
-
-       />
-     </div>
-   )
 
 
-}
+
 
   render() {
     console.log('isLoading', this.props.loading);
 
     return (
       <div>
+        <Modal
+         isOpen={this.state.isActive}
+         style={customStyles}
+         >
+          <div className='spinner'>
+            <BeatLoader
+              color={'#fff'}
+              loading={this.state.loadSpinner}
+
+            />
+          </div>
+        </Modal>
+
 
       <div className="App">
 
