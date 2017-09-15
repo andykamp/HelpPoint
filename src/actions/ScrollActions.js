@@ -10,7 +10,7 @@ export const subscribeToScroll = () => {
           dispatch({ type: PASSIVE_SCROLL });
 
           window.scrollTo(0,snapshot.val());
-          console.log('SCROLLSubscribe', snapshot.val());
+          //console.log('SCROLLSubscribe', snapshot.val());
       });
   };
 };

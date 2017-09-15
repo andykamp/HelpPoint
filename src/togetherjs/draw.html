@@ -4,6 +4,7 @@ var context = canvas.getContext('2d');
 
 // the aspect ratio is always based on WxH, height is calculated from width:
 // canvas.width = $('#sketchContainer').outerWidth();
+//document.getElementById('insideWrapper').style.width = "300px";
 var W = $('#sketchContainer').outerWidth()
 var H = $('#sketchContainer').outerHeight()
 canvas.width = $('#sketchContainer').outerWidth();
@@ -24,13 +25,24 @@ context.lineWidth = 2;
 context.lineJoin = 'round';
 context.lineCap = 'round';
 context.strokeStyle = '#000';
+/*setTimeout(function(){
+  canvas.width = ($('#sketchContainer').outerWidth())*2;
+  canvas.height = ((canvas.width/W)*H)*2;
+  reDraw(lines*2);
+}, 14000);*/
+var Zoom = 1;
+/*setTimeout(function(){
+   var scroll = $(window).scrollTop(200);
+}, 14000);*/
+
+
 
 // attach the mousedown, mouseout, mousemove, mouseup event listeners.
 var offset = document.getElementById('sketchContainer');
 canvas.addEventListener('mousedown', function (e) {
 lastMouse = {
-  x: e.pageX - offset.offsetLeft,
-  y: e.pageY - offset.offsetTop
+  x: e.pageX - offset.offsetLeft*Zoom,
+  y: e.pageY - offset.offsetTop*Zoom
 };
 canvas.addEventListener('mousemove', move, false);
 }, false);
@@ -102,8 +114,8 @@ if (save) {
 // Called whenever the mousemove event is fired, calls the draw function:
 function move(e) {
 var mouse = {
-  x: e.pageX - offset.offsetLeft,
-  y: e.pageY - offset.offsetTop
+  x: e.pageX - offset.offsetLeft*Zoom,
+  y: e.pageY - offset.offsetTop*Zoom
 };
 // Translates the coordinates from the local canvas size to WxH:
 sendMouse = {
@@ -237,6 +249,29 @@ $('.minus-size').click(function() {
   changeMouse();
 });
 });
+////zoom
+$('.zoom').click(function () {
+ZoomIn();
+//Zoom=0.5;
+});
+
+$('.zoomout').click(function () {
+ZoomOut();
+//Zoom=0.5;
+
+});
+
+function ZoomIn() {
+document.getElementById('sketchContainer').style.zoom="150%"
+ZoomMessage("150%");
+
+}
+
+function ZoomOut() {
+document.getElementById('sketchContainer').style.zoom="50%"
+ZoomMessage("50%");
+
+}
 
 //////////////////scroll
 
@@ -246,13 +281,20 @@ window.addEventListener('scroll', function () {
 
   if (send === true) {
   if (TogetherJS.running) {
-    let  intElemScrollTop = Math.round(window.scrollY);
+    // var scroll = $(window).scrollTop();
+    //   var scroll = $(window).scrollTop(200);
+    var xscroll = $(window).scrollLeft();
+    var yscroll = $(window).scrollTop();
+    //let  intElemScrollTop = Math.round(window.scrollY);
+    //let  intElemScrollwidth = Math.round(window.scrollX);
           //console.log('scrollTop', window.scrollY);
-        const yscroll= intElemScrollTop;
+        //const yscroll= intElemScrollTop;
+        //const xscroll= intElemScrollwidth;
 
     TogetherJS.send({
       type: 'scroll',
       y: yscroll,
+      x: xscroll,
       passive: true
     });
   }
@@ -265,12 +307,13 @@ TogetherJS.hub.on('scroll', function (msg) {
   if (!msg.sameUrl) {
       return;
   }
-  console.log('SENDBEFORE', send);
+  //console.log('SENDBEFORE', send);
 
   send=false;//tels scollhandler to not send my scrollings since i am tolb by other user to scrol
-  console.log('SENDAFTER', send);
-
-      window.scrollTo(0, msg.y);
+  //console.log('SENDAFTER', send);
+      var scroll = $(window).scrollLeft(msg.x);
+      var scroll = $(window).scrollTop(msg.y);
+      //window.scrollTo(msg.x, msg.y);
 //send=true; //enables scrolling becous i must be able to scroll
   setTimeout(function(){ send=true }, 30);
 
@@ -282,8 +325,45 @@ TogetherJS.hub.on('scroll', function (msg) {
 function setSend() {
   return send=true;
 }
+/////ZOOOM
 
-function handleScroll(event) {
 
+function ZoomMessage(degree) {
+
+
+  if (TogetherJS.running) {
+
+    TogetherJS.send({
+      type: 'zoom',
+      zooomTo: degree,
+    });
+  }
 
 }
+
+// Listens for scroll messages, sends info about the scroll:
+TogetherJS.hub.on('zoom', function (msg) {
+  if (!msg.sameUrl) {
+      return;
+  }
+
+  document.getElementById('sketchContainer').style.zoom= msg.zooomTo;
+
+
+
+
+});
+////
+
+$('.save').click(function () {
+  html2canvas(document.getElementById('sketchContainer'), {
+    onrendered: function(canvas) {
+      //tested in crome. saves and opens image
+      var download = document.getElementById("download");
+       var image = canvas.toDataURL("image/png")
+                   .replace("image/png", "image/octet-stream");
+       download.setAttribute("href", image);
+    }
+  });
+
+});

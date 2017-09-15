@@ -10,11 +10,11 @@ export default (state = INITIAL_STATE, action) => {
     case SCROLL:
     return { ...state, scroll: action.payload };
     case PASSIVE_SCROLL:
-    console.log(action);
+    //console.log(action);
 
     return { ...state, passiveScroll: true };
     case ACTIVE_SCROLL:
-    console.log(action);
+    //console.log(action);
     return { ...state, passiveScroll: false };
 
 
